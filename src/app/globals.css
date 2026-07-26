@@ -1,0 +1,282 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-cormorant);
+  --font-serif: var(--font-playfair);
+  --font-script: var(--font-dancing);
+  --font-vibes: var(--font-great-vibes);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Premium love theme — warm ivory base, rose-gold & wine accents */
+  --background: oklch(0.985 0.012 40);            /* warm ivory */
+  --foreground: oklch(0.28 0.06 15);              /* deep wine-charcoal */
+
+  --card: oklch(0.995 0.008 50);                  /* near-white cream */
+  --card-foreground: oklch(0.28 0.06 15);
+
+  --popover: oklch(0.995 0.008 50);
+  --popover-foreground: oklch(0.28 0.06 15);
+
+  --primary: oklch(0.52 0.16 18);                 /* rose wine */
+  --primary-foreground: oklch(0.985 0.012 40);
+
+  --secondary: oklch(0.94 0.03 35);               /* soft blush */
+  --secondary-foreground: oklch(0.32 0.08 15);
+
+  --muted: oklch(0.95 0.022 40);
+  --muted-foreground: oklch(0.5 0.05 20);
+
+  --accent: oklch(0.78 0.11 55);                  /* rose-gold */
+  --accent-foreground: oklch(0.28 0.06 15);
+
+  --destructive: oklch(0.5 0.2 22);
+  --border: oklch(0.88 0.03 35);
+  --input: oklch(0.9 0.025 35);
+  --ring: oklch(0.6 0.15 20);
+
+  --chart-1: oklch(0.55 0.17 18);
+  --chart-2: oklch(0.7 0.13 40);
+  --chart-3: oklch(0.78 0.11 55);
+  --chart-4: oklch(0.62 0.09 70);
+  --chart-5: oklch(0.45 0.1 15);
+
+  --sidebar: oklch(0.985 0.012 40);
+  --sidebar-foreground: oklch(0.28 0.06 15);
+  --sidebar-primary: oklch(0.52 0.16 18);
+  --sidebar-primary-foreground: oklch(0.985 0.012 40);
+  --sidebar-accent: oklch(0.94 0.03 35);
+  --sidebar-accent-foreground: oklch(0.28 0.06 15);
+  --sidebar-border: oklch(0.88 0.03 35);
+  --sidebar-ring: oklch(0.6 0.15 20);
+}
+
+.dark {
+  --background: oklch(0.18 0.03 15);
+  --foreground: oklch(0.96 0.015 45);
+  --card: oklch(0.23 0.04 15);
+  --card-foreground: oklch(0.96 0.015 45);
+  --popover: oklch(0.23 0.04 15);
+  --popover-foreground: oklch(0.96 0.015 45);
+  --primary: oklch(0.72 0.14 20);
+  --primary-foreground: oklch(0.18 0.03 15);
+  --secondary: oklch(0.3 0.05 15);
+  --secondary-foreground: oklch(0.96 0.015 45);
+  --muted: oklch(0.3 0.04 15);
+  --muted-foreground: oklch(0.72 0.04 30);
+  --accent: oklch(0.6 0.12 40);
+  --accent-foreground: oklch(0.96 0.015 45);
+  --destructive: oklch(0.65 0.2 22);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.6 0.15 20);
+  --sidebar: oklch(0.23 0.04 15);
+  --sidebar-foreground: oklch(0.96 0.015 45);
+  --sidebar-primary: oklch(0.72 0.14 20);
+  --sidebar-primary-foreground: oklch(0.18 0.03 15);
+  --sidebar-accent: oklch(0.3 0.05 15);
+  --sidebar-accent-foreground: oklch(0.96 0.015 45);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.6 0.15 20);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-cormorant), Georgia, serif;
+  }
+  ::selection {
+    background: oklch(0.78 0.11 55 / 0.35);
+    color: oklch(0.32 0.08 15);
+  }
+}
+
+/* ---------- Custom scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.96 0.02 45);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, oklch(0.7 0.13 40), oklch(0.52 0.16 18));
+  border-radius: 999px;
+  border: 2px solid oklch(0.96 0.02 45);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, oklch(0.6 0.15 25), oklch(0.45 0.17 18));
+}
+
+/* ---------- Font utility classes ---------- */
+.font-serif-display {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+.font-body {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+.font-script {
+  font-family: var(--font-dancing), cursive;
+}
+.font-vibes {
+  font-family: var(--font-great-vibes), cursive;
+}
+
+/* ---------- Premium textures & gradients ---------- */
+.bg-love-canvas {
+  background-color: oklch(0.985 0.012 40);
+  background-image:
+    radial-gradient(at 18% 12%, oklch(0.92 0.045 30 / 0.55) 0px, transparent 55%),
+    radial-gradient(at 82% 8%, oklch(0.9 0.05 50 / 0.5) 0px, transparent 50%),
+    radial-gradient(at 75% 85%, oklch(0.88 0.05 20 / 0.45) 0px, transparent 55%),
+    radial-gradient(at 12% 78%, oklch(0.93 0.04 45 / 0.5) 0px, transparent 55%);
+}
+
+.text-gradient-rose {
+  background: linear-gradient(100deg, oklch(0.52 0.16 18) 0%, oklch(0.62 0.13 35) 45%, oklch(0.7 0.12 55) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(100deg, oklch(0.55 0.1 60) 0%, oklch(0.72 0.11 70) 50%, oklch(0.6 0.09 55) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Soft glass card */
+.glass-card {
+  background: linear-gradient(160deg, oklch(1 0 0 / 0.7), oklch(0.98 0.02 45 / 0.55));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid oklch(0.88 0.04 35 / 0.6);
+  box-shadow:
+    0 1px 0 oklch(1 0 0 / 0.7) inset,
+    0 24px 60px -28px oklch(0.45 0.1 18 / 0.45);
+}
+
+/* Thin gold divider */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, oklch(0.7 0.11 65 / 0.7), transparent);
+}
+
+/* ---------- Animations ---------- */
+@keyframes float-rise {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(var(--s, 1));
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--o, 0.6);
+  }
+  90% {
+    opacity: var(--o, 0.6);
+  }
+  100% {
+    transform: translateY(-110vh) translateX(var(--dx, 40px)) rotate(var(--r, 360deg)) scale(var(--s, 1));
+    opacity: 0;
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.12); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.08); }
+  60% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.animate-glow {
+  animation: glow-pulse 5s ease-in-out infinite;
+}
+
+.animate-sway {
+  animation: sway 7s ease-in-out infinite;
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, oklch(0.5 0.16 18) 0%, oklch(0.72 0.13 50) 25%, oklch(0.55 0.1 65) 50%, oklch(0.72 0.13 50) 75%, oklch(0.5 0.16 18) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-heartbeat,
+  .animate-glow,
+  .animate-sway,
+  .shimmer-text {
+    animation: none !important;
+  }
+}
