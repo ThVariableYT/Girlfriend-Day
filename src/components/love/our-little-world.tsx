@@ -44,7 +44,7 @@ export function OurLittleWorld() {
               <p className="font-body text-sm uppercase tracking-[0.35em] text-[oklch(0.5_0.1_30)]">
                 my girl
               </p>
-              <p className="font-vibes text-6xl text-gradient-rose sm:text-7xl">Mau</p>
+              <p className="font-vibes px-2 py-3 text-6xl leading-[1.35] text-gradient-rose sm:text-7xl">Mau</p>
               <p className="font-body text-base italic text-[oklch(0.45_0.08_28)]">Payal</p>
             </motion.div>
 
@@ -71,7 +71,7 @@ export function OurLittleWorld() {
               <p className="font-body text-sm uppercase tracking-[0.35em] text-[oklch(0.5_0.1_30)]">
                 your boy
               </p>
-              <p className="font-vibes text-6xl text-gradient-gold sm:text-7xl">Poochu</p>
+              <p className="font-vibes px-2 py-3 text-6xl leading-[1.35] text-gradient-gold sm:text-7xl">Poochu</p>
               <p className="font-body text-base italic text-[oklch(0.45_0.08_28)]">Jash</p>
             </motion.div>
           </div>

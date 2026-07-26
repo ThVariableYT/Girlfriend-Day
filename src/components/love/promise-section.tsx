@@ -59,7 +59,7 @@ export function PromiseSection() {
             <p className="mt-1 font-body text-base text-[oklch(0.45_0.07_28)]">
               Here&apos;s to us — today and every day after.
             </p>
-            <p className="mt-4 font-vibes text-5xl text-gradient-rose">
+            <p className="mt-4 font-vibes px-2 py-3 text-5xl leading-[1.35] text-gradient-rose">
               Always, Poochu
             </p>
           </div>

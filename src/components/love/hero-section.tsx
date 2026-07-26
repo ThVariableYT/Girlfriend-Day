@@ -57,7 +57,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.4, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="font-vibes text-[clamp(4.5rem,18vw,12rem)] leading-[0.95] text-gradient-rose drop-shadow-[0_8px_30px_oklch(0.5_0.15_18/0.25)]"
+          className="font-vibes px-4 py-6 text-[clamp(4.5rem,18vw,12rem)] leading-[1.35] text-gradient-rose drop-shadow-[0_8px_30px_oklch(0.5_0.15_18/0.25)]"
         >
           Mau
         </motion.h1>

@@ -88,7 +88,7 @@ export function LoveLetter() {
                 <p className="font-body text-base italic text-[oklch(0.42_0.08_25)]">
                   With all the love I have and all the love I am still learning,
                 </p>
-                <p className="mt-1 font-vibes text-4xl text-gradient-rose">
+                <p className="mt-1 font-vibes px-2 py-2 text-4xl leading-[1.35] text-gradient-rose">
                   Poochu
                 </p>
                 <p className="mt-1 font-body text-sm tracking-wide text-[oklch(0.5_0.08_30)]">

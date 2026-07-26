@@ -162,6 +162,10 @@
 }
 .font-vibes {
   font-family: var(--font-great-vibes), cursive;
+  /* Great Vibes has tall ascenders & long swashes that extend well beyond the
+     em box. Give the line box room so the flourishes never clip. */
+  line-height: 1.4;
+  overflow: visible;
 }
 
 /* ---------- Premium textures & gradients ---------- */

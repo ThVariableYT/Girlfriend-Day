@@ -39,3 +39,41 @@ Verification (Agent Browser):
 - `bun run lint` passes clean
 
 Note: Agent-browser uses an isolated browser context, so the test photos uploaded during verification do NOT appear in the user's preview session — the carousel starts empty with a lovely "let's fill this with us" prompt for Jash to add his own photos of Payal.
+
+---
+Task ID: 2
+Agent: main
+Task: Three refinements requested by user: (a) stop the big cursive words from clipping, (b) add option to hardcode images in the memory carousel for deploy, (c) make the carousel adapt to photo orientation. Do NOT change fonts or font sizes.
+
+Work Log:
+- Fixed cursive (Great Vibes) clipping globally + per element WITHOUT changing font/size:
+  - globals.css `.font-vibes` now sets `line-height: 1.4` and `overflow: visible` (gives swashes/descenders room in the line box)
+  - hero "Mau": replaced `leading-[0.95]` (main culprit) with `leading-[1.35]` + `px-4 py-6`
+  - our-little-world "Mau"/"Poochu": added `leading-[1.35] px-2 py-3`
+  - promise "Always, Poochu": added `leading-[1.35] px-2 py-3`
+  - love-letter "Poochu": added `leading-[1.35] px-2 py-2`
+  - love-footer "Mau & Poochu": added `leading-[1.35] px-2 py-2`
+- Hardcoded memories feature:
+  - New file `src/components/love/default-memories.ts` exports `defaultMemories: DefaultMemory[]` (empty by default, with step-by-step deploy instructions in comments)
+  - `public/memories/` folder created with a README.txt explaining where to drop photos
+  - `usePhotoStore(presets)` now merges presets (id `preset-<i>`, `preset:true`) before uploads; presets are read-only (removePhoto/updateCaption guard on `preset-` id prefix)
+  - Carousel shows a "kept" lock badge on preset photos and hides the delete/edit buttons for them
+- Orientation-adaptive stage:
+  - Added ResizeObserver-measured wrap width + viewport-based maxH (min(70vh,600px))
+  - Each photo's natural dimensions captured via img `onLoad` into a dims map
+  - Stage box computed from photo aspect ratio, capped at maxH so portrait photos never take over the screen; centered with mx-auto; smooth CSS transition on width/height
+  - Falls back to 16:10 aspect before first measure
+
+Verification (Agent Browser + VLM):
+- Hero "Mau": VLM confirms NO clipping — "tall elegant swash on M extends upward... descender on u curves gracefully downward with plenty of space"
+- Footer "Mau & Poochu": VLM confirms NO clipping — swashes and descenders fully intact
+- Hardcoded presets: temporarily added 2 generated images (1 landscape, 1 portrait) → both rendered with "kept" badge, script caption, no delete button, navigation worked
+- Orientation adaptation: landscape stage measured 707×404, portrait stage measured 231×404 (tall, narrow, centered) — VLM confirms portrait photo "taller than wide, narrow, centered... full rose visible without cropping"
+- Reverted config to empty + removed test images; empty-state carousel ("let's fill this with us") confirmed working
+- `bun run lint` clean; dev log no errors
+
+Stage Summary:
+- All three requests implemented and browser-verified
+- Shipped `defaultMemories` array is empty with clear instructions; Jash drops photos in `public/memories/` and adds one line per photo to deploy
+- Carousel now adapts to any photo orientation (landscape, portrait, square, panorama) automatically
+- Fonts and font sizes unchanged everywhere

@@ -1,12 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { DefaultMemory } from "./default-memories";
 
 export type MemoryPhoto = {
   id: string;
   url: string;
   caption: string;
   createdAt: number;
+  /** true for hardcoded (default) memories — not editable or deletable */
+  preset?: boolean;
 };
 
 type StoredRecord = {
@@ -67,8 +70,21 @@ function uid() {
   return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
-export function usePhotoStore() {
-  const [photos, setPhotos] = useState<MemoryPhoto[]>([]);
+export function usePhotoStore(presets: DefaultMemory[] = []) {
+  // Hardcoded memories are stable (module-level constant) — build once.
+  const presetPhotos = useMemo<MemoryPhoto[]>(
+    () =>
+      presets.map((p, i) => ({
+        id: `preset-${i}`,
+        url: p.src,
+        caption: p.caption,
+        createdAt: i,
+        preset: true,
+      })),
+    [presets]
+  );
+
+  const [uploads, setUploads] = useState<MemoryPhoto[]>([]);
   const [ready, setReady] = useState(false);
   const urlsRef = useRef<Set<string>>(new Set());
 
@@ -83,7 +99,7 @@ export function usePhotoStore() {
     }
   }, []);
 
-  // load
+  // load uploads from IndexedDB
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -95,7 +111,7 @@ export function usePhotoStore() {
           trackUrl(url);
           return { id: r.id, url, caption: r.caption, createdAt: r.createdAt };
         });
-        setPhotos(mapped);
+        setUploads(mapped);
       } catch {
         /* ignore — fall back to empty */
       } finally {
@@ -106,6 +122,9 @@ export function usePhotoStore() {
       mounted = false;
     };
   }, [trackUrl]);
+
+  // merged list: presets first, then user uploads
+  const photos = useMemo(() => [...presetPhotos, ...uploads], [presetPhotos, uploads]);
 
   const addPhotos = useCallback(
     async (files: File[]) => {
@@ -125,7 +144,7 @@ export function usePhotoStore() {
         newOnes.push({ id, url, caption, createdAt });
       }
       if (newOnes.length) {
-        setPhotos((prev) => [...prev, ...newOnes]);
+        setUploads((prev) => [...prev, ...newOnes]);
       }
       return newOnes.length;
     },
@@ -134,20 +153,24 @@ export function usePhotoStore() {
 
   const removePhoto = useCallback(
     async (id: string) => {
-      const target = photos.find((p) => p.id === id);
+      // presets can't be removed
+      if (id.startsWith("preset-")) return;
+      const target = uploads.find((p) => p.id === id);
       if (target) revokeUrl(target.url);
       try {
         await dbDelete(id);
       } catch {
         /* ignore */
       }
-      setPhotos((prev) => prev.filter((p) => p.id !== id));
+      setUploads((prev) => prev.filter((p) => p.id !== id));
     },
-    [photos, revokeUrl]
+    [uploads, revokeUrl]
   );
 
   const updateCaption = useCallback(async (id: string, caption: string) => {
-    setPhotos((prev) => prev.map((p) => (p.id === id ? { ...p, caption } : p)));
+    // presets can't be edited
+    if (id.startsWith("preset-")) return;
+    setUploads((prev) => prev.map((p) => (p.id === id ? { ...p, caption } : p)));
     // persist lazily
     try {
       const db = await openDB();

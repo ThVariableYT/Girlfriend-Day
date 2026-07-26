@@ -11,7 +11,7 @@ export function LoveFooter() {
           <Heart className="h-4 w-4 fill-[oklch(0.55_0.16_18)] text-[oklch(0.55_0.16_18)]" />
           <span className="h-px w-12 bg-gradient-to-l from-transparent to-[oklch(0.6_0.14_30/0.6)]" />
         </div>
-        <p className="font-vibes text-3xl text-gradient-rose">
+        <p className="font-vibes px-2 py-2 text-3xl leading-[1.35] text-gradient-rose">
           Mau &amp; Poochu
         </p>
         <p className="mt-2 font-body text-sm text-[oklch(0.45_0.07_28)]">
