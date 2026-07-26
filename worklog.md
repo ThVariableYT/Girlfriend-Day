@@ -77,3 +77,32 @@ Stage Summary:
 - Shipped `defaultMemories` array is empty with clear instructions; Jash drops photos in `public/memories/` and adds one line per photo to deploy
 - Carousel now adapts to any photo orientation (landscape, portrait, square, panorama) automatically
 - Fonts and font sizes unchanged everywhere
+
+---
+Task ID: 3
+Agent: main
+Task: Add landing gate (cat-kissing gif + Yes/No where No runs away), 5-question MCQ quiz, 7 collectible hearts across the site that unlock a prize photo modal. All mobile-friendly.
+
+Work Log:
+- Generated 2 images: public/cat-kiss.png (two kawaii cats kissing), public/memories/prize.jpg (placeholder prize — Jash replaces with a photo of them)
+- New configs:
+  - quiz-questions.ts — 5 customizable MCQs + quizResultMessage(score) with 4 sweet result tiers
+  - prize-config.ts — prize src/title/message/signature (defaults to placeholder, instructions to replace)
+- LandingGate (landing-gate.tsx): full-screen "A surprise for Mau" with animated cat (gentle bob + floating hearts + kiss sparkle), Yes button reveals content, No button dodges on hover/focus/pointerdown/click with sassy rotating labels; touchAction:none so mobile taps can't land it; AnimatePresence exit transition
+- QuizSection (quiz-section.tsx): 5 MCQ, one question at a time, instant feedback (correct glows rose, wrong picked shows X), progress dots, locked after pick, results screen with cursive score "5 / 5" + tiered sweet message + Play again
+- CollectibleHearts (collectible-hearts.tsx): full-height pointer-events-none layer with 7 hearts at percentage top positions spanning the whole page; each heart pulses, bursts with 6 mini-hearts on collect; fixed progress badge (bottom-center mobile / bottom-right desktop) "x / 7 hearts found" → "all found — a surprise awaits"; PrizeModal with romantic gradient frame, confetti hearts, title overlay in cursive, message + signature, close button
+- Refactored page.tsx → renders LoveExperience client wrapper (love-experience.tsx) holding `entered` state: gate first, then content (Hero, Letter, Memory, Quiz, Things, Little World, Promise, Footer) with CollectibleHearts overlay
+
+Verification (Agent Browser + VLM, desktop + 390px mobile):
+- Landing gate renders, cat image cute & on-theme (VLM: "very cute... elegant, not vibe coded")
+- No button: dodged off-screen on click, label cycled to "not that button~"; Yes reveals content
+- Quiz: answered all 5 → "5 / 5, Perfect, my love!" result with Play again; mobile card fits width, no overflow
+- Hearts: clicked all 7 → badge "all found — a surprise awaits" → prize modal popped with photo in gradient frame, cursive title, message, signature, close button
+- Prize modal mobile (390px): fits width, photo not awkwardly cropped, close reachable, no overflow
+- All VLM checks passed; `bun run lint` clean; dev log no errors
+
+Stage Summary:
+- All 3 features shipped & verified on desktop + mobile
+- Landing gate with runaway No (mobile-safe), 5-Q quiz (customizable), 7 collectible hearts → prize modal
+- New files: landing-gate, quiz-section, collectible-hearts, love-experience, quiz-questions, prize-config + cat-kiss.png + prize.jpg placeholder
+- page.tsx now just renders <LoveExperience/>
