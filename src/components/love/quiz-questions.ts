@@ -21,17 +21,17 @@ export type QuizQuestion = {
 export const quizQuestions: QuizQuestion[] = [
   {
     question: "What do you call me, mostly?",
-    options: ["Jash", "Poochu", "baby"],
+    options: ["Jash", "Poochu", "Baby"],
     correct: 1,
   },
   {
-    question: "What do I call you, my favourite?",
-    options: ["Payal", "Mau", "sweetheart"],
+    question: "What do I call you, my love?",
+    options: ["Payal", "Mau", "Sweetheart"],
     correct: 1,
   },
   {
     question: "Which of these is my favourite sound in the world?",
-    options: ["Rain on the window", "Your laugh", "A good song"],
+    options: ["You crying", "Your laugh", "A good song"],
     correct: 1,
   },
   {

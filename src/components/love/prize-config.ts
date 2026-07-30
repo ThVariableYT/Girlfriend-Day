@@ -18,7 +18,7 @@ export const prizeConfig = {
   title: "You found them all, my love",
   /** Sweet message shown under the photo. */
   message:
-    "Seven hearts, just like the seven days my love for you resets and begins again. Here's a little something, only for you. The real prize, of course, is you — always has been.",
+    "Seven hearts, just like the seven days my love for you thrives, resets and begins again. Here's a little something, only for you. The real prize, of course, is you — always has been. I want to be with you for the rest of my life, and I hope you feel the same. I love you, my baby girl.",
   /** Signature. */
   signature: "Always yours, Poochu",
 };
