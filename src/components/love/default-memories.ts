@@ -22,19 +22,15 @@
  */
 export type DefaultMemory = {
   /** Path to the image, e.g. "/memories/our-photo.jpg" */
-  src: "/memories/love1.jpg";
+  src: string;
   /** A little caption shown under the photo (optional) */
-  caption: "our first time at trimandir together 💝";
-
-  src: "/memories/love2.jpg", caption: "our first valentine's day ever 💖" 
-
-  src: "/memories/love3.jpg", caption: "our college bunk photoshoots 😝" 
-
-  src: "/memories/love4.jpg", caption: "our first trip to the beach together 🏖️"
-
-  src: "/memories/love5.jpg", caption: "our kisses of love 💋"
+  caption?: string;
 };
 
 export const defaultMemories: DefaultMemory[] = [
-  // { src: "/memories/example.jpg", caption: "a moment with you" },
+  { src: "/memories/love1.jpg", caption: "our first time at trimandir together 💝" },
+  { src: "/memories/love2.jpg", caption: "our first valentine's day ever 💖" },
+  { src: "/memories/love3.jpg", caption: "our college bunk photoshoots 😝" },
+  { src: "/memories/love4.jpg", caption: "our first trip to the beach together 🏖️" },
+  { src: "/memories/love5.jpg", caption: "our kisses of love 💋" },
 ];
