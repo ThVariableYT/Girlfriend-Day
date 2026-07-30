@@ -22,9 +22,17 @@
  */
 export type DefaultMemory = {
   /** Path to the image, e.g. "/memories/our-photo.jpg" */
-  src: string;
+  src: "/memories/love1.jpg";
   /** A little caption shown under the photo (optional) */
-  caption: string;
+  caption: "our first time at trimandir together 💝";
+
+  src: "/memories/love2.jpg", caption: "our first valentine's day ever 💖" 
+
+  src: "/memories/love3.jpg", caption: "our college bunk photoshoots 😝" 
+
+  src: "/memories/love4.jpg", caption: "our first trip to the beach together 🏖️"
+
+  src: "/memories/love5.jpg", caption: "our kisses of love 💋"
 };
 
 export const defaultMemories: DefaultMemory[] = [
