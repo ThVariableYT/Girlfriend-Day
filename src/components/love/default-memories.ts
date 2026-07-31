@@ -33,4 +33,5 @@ export const defaultMemories: DefaultMemory[] = [
   { src: "/memories/love3.jpg", caption: "our college bunk photoshoots 😝" },
   { src: "/memories/love4.jpg", caption: "our first trip to the beach together 🏖️" },
   { src: "/memories/love5.jpg", caption: "our kisses of love 💋" },
+  { src: "/memories/love6.jpg", caption: "our first ever picture together 📸" },
 ];
